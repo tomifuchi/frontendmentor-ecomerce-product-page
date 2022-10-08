@@ -1,0 +1,59 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width,initial-scale=1')
+    //  displays site properly based on user's device 
+    link(rel='icon' type='image/png' sizes='32x32' href='./images/favicon-32x32.png')
+    link(rel="stylesheet", href="style.css")
+    title Frontend Mentor | E-commerce product page
+    //  Feel free to remove these styles or customise in your own stylesheet 👍 
+    style
+      .attribution { font-size: 11px; text-align: center; }
+      .attribution a { color: hsl(228, 45%, 44%); }
+      
+  body
+
+    header
+      nav 
+        .logo 
+          img(src="./images/logo.svg", alt="sneakers logo")
+        ul
+          li
+            a(href="#") Collection
+          li
+            a(href="#") Men
+          li
+            a(href="#") Women
+          li
+            a(href="#") About
+          li
+            a(href="#") Contacts
+        .cart-profile
+          img(src="./images/icon-cart.svg", alt="shopping cart icon").cart
+          img(src="./images/image-avatar.png", alt="user avatar").profile
+
+    main 
+      .product-img
+        .product-img-detail
+          img(src="./images/image-product-1.jpg", alt="sneaker picture #1")
+          img(src="./images/image-product-2.jpg", alt="sneaker picture #2")
+          img(src="./images/image-product-3.jpg", alt="sneaker picture #3")
+          img(src="./images/image-product-4.jpg", alt="sneaker picture #4")
+        .product-img-variation
+          img(src="./images/image-product-1-thumbnail.jpg", alt="sneaker picture #1 thumbnail")
+          img(src="./images/image-product-2-thumbnail.jpg", alt="sneaker picture #2 thumbnail")
+          img(src="./images/image-product-3-thumbnail.jpg", alt="sneaker picture #3 thumbnail")
+          img(src="./images/image-product-4-thumbnail.jpg", alt="sneaker picture #4 thumbnail")
+      .product-detail
+        h3.product-detail-maker SNEAKER COMPANY
+        h4.product-detail-tittle Fall Limited Edition Sneakers
+        p.product-detail-description These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they’ll withstand everything the weather can offer.
+        .product-detail-price 
+          .current-price $125.00 
+          .discount 50% 
+          .previous-price <del>$250.00</del>
+        .product-detail-qtty
+          label(for="quantity") Quantity (between 1 and 5)
+          input(type="number" id="quantity" name="quantity" min="1" max="5")
+        button.product-detail-addtocart Add to cart

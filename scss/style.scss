@@ -1,0 +1,173 @@
+@import '../../scss_base/starter';
+@import 'base';
+
+//Body 
+body {
+    background-color: $color-neu-white;
+    font-family: $font-kumbh-sans, $font-fallback-roboto;
+    font-size: $font-size;
+}
+
+//For this particular project 
+$max-width: 83vw;
+//Header area
+nav {
+    @include content-wraper($max-width);
+    @include flex($align: center);
+    gap: 30px;  
+    padding: 15px 0;
+    border-bottom: 1px solid $color-neu-grayish-blue;
+
+    //Logo
+    .logo {
+        font-weight: $font-weight-2;
+    }
+
+    ul {
+        @include flex();
+        gap: 25px;
+    }
+
+    a {
+        font-family: $font-kumbh-sans, $font-fallback-roboto;
+        color: $color-neu-dark-grayish-blue;
+    }
+
+    //Cart-profile
+    .cart-profile {
+        margin-left: auto;
+        @include flex($align: center);
+        gap: 30px;
+
+        .cart {
+            width: 30px;
+            height: 30px;
+        }
+
+        .profile {
+            width: 60px;
+            height: 60px;
+        }
+    }
+}
+
+//Main area
+main {
+    @include grid($column: 1fr 1fr);
+    @include content-wraper($max-width);
+    padding: 50px 0;
+
+
+    .product-img {
+        grid-column: 1/2;
+    }
+
+    .product-detail {
+        grid-column: 2/3;
+    }
+}
+//Product image
+.product-img{
+    @include flex($direction: column);
+    gap: 30px;
+
+    img {
+        height: auto;
+        width: 100%;
+
+        border-radius: 20px;
+    }
+
+    .product-img-detail{
+        @include grid($column: 1fr, $row: 1fr);
+
+        img {
+            grid-column: 1/2;
+            grid-row: 1/2;
+        }
+    }
+
+    .product-img-variation{
+        @include grid($column: repeat(4, 1fr));
+        gap: 15px;
+    }
+}
+
+//Product detail
+.product-detail {
+    @include flex($direction: column, $justify: center);
+    padding: 80px;
+
+    &-maker{
+        color: $color-pri-orange;
+    }
+
+    &-tittle{
+        color: $color-neu-black;
+        font-size: $font-size * 3;
+        font-weight: $font-weight-2;
+    }
+
+    &-description{
+        color: $color-neu-dark-grayish-blue;
+    }
+
+    &-price{
+        width: 40%;
+        @include grid($column: repeat(2,1fr),$row: repeat(2,1fr));
+        @include defineGridArea((
+            ".current-price": cp,
+            ".discount": dc,
+            ".previous-price": pp
+        ));
+        grid-template-areas: 
+            "cp dc"
+            "pp pp"
+        ;
+        align-items: center;
+        column-gap: 30px;
+        row-gap: 10px;
+
+        .current-price {
+            font-size: $font-size * 1.5;
+            font-weight: $font-weight-2;
+        }
+        
+        .discount {
+            text-align: center;
+            border-radius: 5px;
+            background-color: $color-pri-pale-orange;
+            color: $color-pri-orange;
+        }
+
+        .previous-price {
+            color: $color-neu-grayish-blue;
+        }
+
+    }
+
+    &-qtty{
+
+    }
+
+    &-addtocart{
+        background-color: $color-pri-orange;
+        border: none;
+        position: relative;
+        color: $color-neu-white;
+        padding: 15px;
+        border-radius: 10px;
+
+
+        &::before {
+            content: '';
+            background-image: url('./images/icon-cart.svg');
+            background-repeat: no-repeat;
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            top: 35%;
+            left: 25%;
+        }
+    }
+}

@@ -1,0 +1,41 @@
+// Front-end Style Guide
+
+//# Layout
+
+$width-mobile: 375px;
+$width-desktop: 1440px;
+
+//# Colors
+
+//## Primary
+
+$color-pri-orange: hsl(26, 100%, 55%);
+$color-pri-pale-orange: hsl(25, 100%, 94%);
+
+//## Neutral
+
+$color-neu-Very-dark-blue: hsl(220, 13%, 13%);
+$color-neu-dark-grayish-blue: hsl(219, 9%, 45%);
+$color-neu-grayish-blue: hsl(220, 14%, 75%);
+$color-neu-light-grayish-blue: hsl(223, 64%, 98%);
+$color-neu-white: hsl(0, 0%, 100%);
+//(with 75% opacity for lightbox background)
+$color-neu-black : hsl(0, 0%, 0%);
+
+//# Typography
+
+//## Body Copy
+$font-size: 16px;
+$font-weight-1: 400;
+$font-weight-2: 700;
+$font-weight-3: 900;
+
+//## Font
+@include google-font("Kumbh+Sans:400,700,900");
+$font-kumbh-sans: "Kumbh Sans";
+
+
+//General reset
+h3, h4 {
+    @extend %reset-margin-padding;
+}
