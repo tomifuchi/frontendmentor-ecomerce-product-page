@@ -9,13 +9,15 @@ body {
 }
 
 //For this particular project 
-$max-width: 83vw;
+$max-width: 85vw;
 //Header area
 nav {
     @include content-wraper($max-width);
     @include flex($align: center);
     gap: 30px;  
-    padding: 15px 0;
+
+    $nav-padding: 15px;
+    padding: $nav-padding 0;
     border-bottom: 1px solid $color-neu-grayish-blue;
 
     //Logo
@@ -31,6 +33,22 @@ nav {
     a {
         font-family: $font-kumbh-sans, $font-fallback-roboto;
         color: $color-neu-dark-grayish-blue;
+
+    }
+
+    li:hover{
+        position: relative;
+    }
+    li:hover::before{
+        content: '';
+        position: absolute;
+        bottom: -($nav-padding + 15px);
+        width: 100%;
+        height: 0;
+        border-bottom: 1px solid red;
+        z-index: 1;
+        transition: 200ms;
+        transform:  scale(1);
     }
 
     //Cart-profile
@@ -40,13 +58,13 @@ nav {
         gap: 30px;
 
         .cart {
-            width: 30px;
-            height: 30px;
+            width: 25px;
+            height: 25px;
         }
 
         .profile {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
         }
     }
 }
@@ -67,39 +85,144 @@ main {
     }
 }
 //Product image
-.product-img{
+.product-img {
     @include flex($direction: column);
     gap: 30px;
+
+    $img-border-radius: 30px;
 
     img {
         height: auto;
         width: 100%;
 
-        border-radius: 20px;
+        cursor: pointer;
+        border-radius: $img-border-radius;
     }
 
-    .product-img-detail{
-        @include grid($column: 1fr, $row: 1fr);
+    .body-overlay {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -5;
+        background-color: $color-neu-black;
+        opacity: 0;
 
-        img {
+        cursor: pointer;
+    }
+
+    .body-overlay[data-active-body-overlay]{
+        z-index: 1;
+        opacity: 0.8;
+    }
+
+    &-detail{
+        //If pressed the big item them this is added to the body
+        @at-root {
+            .body-fixed{
+                position: fixed;
+                inset: 0;
+            }
+        }
+
+        //Grid image carousel
+        ul {
+            @include grid($column: 1fr, $row: 1fr);
+            position: relative;
+        }
+
+        li {
             grid-column: 1/2;
             grid-row: 1/2;
         }
+
+        li{
+            opacity: 0;
+            z-index: -1;
+            transition: 200ms opacity ease-in-out;
+            transition-delay: 200ms;
+        }
+
+        li[data-button-next], li[data-button-prev] {
+            display: none;
+            position: absolute;
+            top: 50%;
+            opacity: 1;
+            z-index: 1;
+
+            border-radius: 40px;
+            padding: 10px;
+            background-color: $color-neu-white;
+            box-shadow: 1px 3px 4px 1px rgba($color-neu-black, 0.6);
+
+            img {
+                width: 25px;
+                height: 25px;
+            }
+        }
+        li[data-button-next] {
+            right: -5%;
+        }
+        li[data-button-prev] {
+            left: -5%;
+        }
+
+        li[data-active-image] {
+            transition-delay: 0ms;
+            opacity: 1;
+            z-index: 0;
+            cursor: pointer;
+        }
     }
 
-    .product-img-variation{
-        @include grid($column: repeat(4, 1fr));
-        gap: 15px;
+    &-variation{
+
+        ul {
+            @include grid($column: repeat(4, 1fr));
+            gap: 15px;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+
+
+        li[data-active-overlay],  li[data-active-overlay]::before{
+            border-radius: $img-border-radius;
+        }
+
+        li[data-active-overlay] {
+            position: relative;
+            border: 2px solid $color-pri-orange;
+        }
+
+        li[data-active-overlay]::before{
+            content: '';
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background-color: $color-neu-white;
+            opacity: 0.7;
+        }
     }
+}
+//active box
+.product-img[data-active-overlay]{
+    position: fixed;
+    top: 0;
 }
 
 //Product detail
 .product-detail {
     @include flex($direction: column, $justify: center);
-    padding: 80px;
+    gap: 10px;
+    padding: 40px;
 
     &-maker{
         color: $color-pri-orange;
+        margin-bottom: 20px;
     }
 
     &-tittle{
@@ -146,28 +269,84 @@ main {
 
     }
 
-    &-qtty{
+    //Notice for more than 10 pairs
+    h5 {
+        color: $color-neu-dark-grayish-blue;
+        font-weight: 1;
+    }
+}
 
+//
+.product-detail-sale{
+    @include flex();
+    gap: 10px;
+
+    &-qtty {
+        flex: 1;
+
+        @include grid($column: 1fr 1fr 1fr);
+        background-color: $color-neu-light-grayish-blue;
+        padding: 10px 15px;
+        border-radius: 15px;
+
+        //Since this is a hack, bascially, 2 button with js funtion to 
+        //increase or decrease the input number, the input field
+        //itself is readonly. Thus achieving the look.
+        //Source:
+        //https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp
+        // Chrome, Safari, Edge, Opera 
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        }
+    
+        /* Firefox */
+        input[type=number] {
+        -moz-appearance: textfield;
+        }
+
+        input[type="number"]{
+            @extend %reset-margin-padding;
+            font-family: $font-kumbh-sans, $font-fallback-roboto;
+            font-weight: $font-weight-2;
+            color: $color-neu-black;
+            text-align: center;
+            border: none; 
+
+            max-width: 70px;
+            background-color: transparent;
+        }
+
+        button {
+            font-family: $font-kumbh-sans, $font-fallback-roboto; 
+            font-size: $font-size * 1.5;
+            font-weight: $font-weight-2;
+            color: $color-pri-orange;
+            border: none;
+            background-color: transparent;
+        }
     }
 
     &-addtocart{
-        background-color: $color-pri-orange;
-        border: none;
+        flex: 3;
         position: relative;
-        color: $color-neu-white;
-        padding: 15px;
-        border-radius: 10px;
-
-
-        &::before {
-            content: '';
-            background-image: url('./images/icon-cart.svg');
-            background-repeat: no-repeat;
-            width: 30px;
-            height: 30px;
+        img {
             position: absolute;
             top: 35%;
             left: 25%;
         }
+
+        button {
+            @extend %reset-margin-padding;
+            border: none;
+            background-color: $color-pri-orange;
+            color: $color-neu-white;
+            border-radius: 10px;
+            padding: 15px;
+            width: 100%;
+        }
+
     }
+    
 }

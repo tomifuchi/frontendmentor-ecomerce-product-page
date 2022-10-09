@@ -35,16 +35,31 @@ html(lang='en')
 
     main 
       .product-img
+        .body-overlay
         .product-img-detail
-          img(src="./images/image-product-1.jpg", alt="sneaker picture #1")
-          img(src="./images/image-product-2.jpg", alt="sneaker picture #2")
-          img(src="./images/image-product-3.jpg", alt="sneaker picture #3")
-          img(src="./images/image-product-4.jpg", alt="sneaker picture #4")
+          ul
+            li(data-active-image)
+              img(src="./images/image-product-1.jpg", alt="sneaker picture #1")
+            li
+              img(src="./images/image-product-2.jpg", alt="sneaker picture #2")
+            li
+              img(src="./images/image-product-3.jpg", alt="sneaker picture #3")
+            li
+              img(src="./images/image-product-4.jpg", alt="sneaker picture #4")
+            li(data-button-next)
+              img(src="./images/icon-next.svg", alt="icon-next")
+            li(data-button-prev)
+              img(src="./images/icon-previous.svg", alt="icon-prev")
         .product-img-variation
-          img(src="./images/image-product-1-thumbnail.jpg", alt="sneaker picture #1 thumbnail")
-          img(src="./images/image-product-2-thumbnail.jpg", alt="sneaker picture #2 thumbnail")
-          img(src="./images/image-product-3-thumbnail.jpg", alt="sneaker picture #3 thumbnail")
-          img(src="./images/image-product-4-thumbnail.jpg", alt="sneaker picture #4 thumbnail")
+          ul
+            li(data-active-overlay)
+              img(src="./images/image-product-1-thumbnail.jpg", alt="sneaker picture #1 thumbnail")
+            li 
+              img(src="./images/image-product-2-thumbnail.jpg", alt="sneaker picture #2 thumbnail")
+            li
+              img(src="./images/image-product-3-thumbnail.jpg", alt="sneaker picture #3 thumbnail")
+            li
+              img(src="./images/image-product-4-thumbnail.jpg", alt="sneaker picture #4 thumbnail")
       .product-detail
         h3.product-detail-maker SNEAKER COMPANY
         h4.product-detail-tittle Fall Limited Edition Sneakers
@@ -53,7 +68,15 @@ html(lang='en')
           .current-price $125.00 
           .discount 50% 
           .previous-price <del>$250.00</del>
-        .product-detail-qtty
-          label(for="quantity") Quantity (between 1 and 5)
-          input(type="number" id="quantity" name="quantity" min="1" max="5")
-        button.product-detail-addtocart Add to cart
+        .product-detail-sale
+          .product-detail-sale-qtty
+            button#cart-decrement -
+            input(type="number" name="quantity" min="0" value="0" readonly)#cart-input
+            button#cart-increment +
+          .product-detail-sale-addtocart 
+            //img(src="./images/icon-cart.svg", alt="shopping cart icon")
+            button Add to cart
+        h5 * For more than 10 pairs, contact the nearest shop to get further discount.
+        
+
+  script(src="script.js" defer) 
