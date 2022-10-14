@@ -3,16 +3,22 @@
 
 //Body 
 body {
+    @include content-wraper($width-desktop);
     background-color: $color-neu-white;
-    font-family: $font-kumbh-sans, $font-fallback-roboto;
-    font-size: $font-size;
+    font-family: $font-kumbh-sans, $font-fallback; 
+    //Responsive typography
+    font-size: calc($font-size + 0.1vw);
+    min-height: 100vh; //Basically, if the content is less enough, then it will try and span to 100vh, if more, it will not hold back to grow
+
+    > * {
+        margin: 0 auto;
+        width: 85%;
+    }
 }
 
-//For this particular project 
-$max-width: 85vw;
+//For this particular project, max-content width
 //Header area
 nav {
-    @include content-wraper($max-width);
     @include flex($align: center);
     gap: 30px;  
 
@@ -20,18 +26,12 @@ nav {
     padding: $nav-padding 0;
     border-bottom: 1px solid $color-neu-grayish-blue;
 
-    //Logo
-    .logo {
-        font-weight: $font-weight-2;
-    }
-
     ul {
         @include flex();
         gap: 25px;
     }
 
     a {
-        font-family: $font-kumbh-sans, $font-fallback-roboto;
         color: $color-neu-dark-grayish-blue;
 
     }
@@ -42,13 +42,10 @@ nav {
     li:hover::before{
         content: '';
         position: absolute;
-        bottom: -($nav-padding + 15px);
+        bottom: -($nav-padding + 16px);
         width: 100%;
         height: 0;
-        border-bottom: 1px solid red;
-        z-index: 1;
-        transition: 200ms;
-        transform:  scale(1);
+        border-bottom: 1px solid $color-pri-orange;
     }
 
     //Cart-profile
@@ -72,7 +69,6 @@ nav {
 //Main area
 main {
     @include grid($column: 1fr 1fr);
-    @include content-wraper($max-width);
     padding: 50px 0;
 
 
@@ -84,50 +80,29 @@ main {
         grid-column: 2/3;
     }
 }
+
 //Product image
 .product-img {
     @include flex($direction: column);
     gap: 30px;
 
     $img-border-radius: 30px;
-
     img {
         height: auto;
         width: 100%;
+        //How to check for max-width min-width ?
+        max-width: 700px; 
 
         cursor: pointer;
         border-radius: $img-border-radius;
     }
 
-    .body-overlay {
-        position: fixed;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -5;
-        background-color: $color-neu-black;
-        opacity: 0;
-
-        cursor: pointer;
-    }
-
-    .body-overlay[data-active-body-overlay]{
-        z-index: 1;
-        opacity: 0.8;
-    }
-
     &-detail{
-        //If pressed the big item them this is added to the body
-        @at-root {
-            .body-fixed{
-                position: fixed;
-                inset: 0;
-            }
-        }
 
-        //Grid image carousel
+       //Grid image carousel
         ul {
             @include grid($column: 1fr, $row: 1fr);
+            //For the navigation next and prev button
             position: relative;
         }
 
@@ -143,6 +118,13 @@ main {
             transition-delay: 200ms;
         }
 
+        li[data-active-image] {
+            transition-delay: 0ms;
+            opacity: 1;
+            z-index: 0;
+            cursor: pointer;
+        }
+
         li[data-button-next], li[data-button-prev] {
             display: none;
             position: absolute;
@@ -153,7 +135,7 @@ main {
             border-radius: 40px;
             padding: 10px;
             background-color: $color-neu-white;
-            box-shadow: 1px 3px 4px 1px rgba($color-neu-black, 0.6);
+            box-shadow: 1px 2px 2px 1px rgba($color-neu-black, 0.2);
 
             img {
                 width: 25px;
@@ -166,13 +148,6 @@ main {
         li[data-button-prev] {
             left: -5%;
         }
-
-        li[data-active-image] {
-            transition-delay: 0ms;
-            opacity: 1;
-            z-index: 0;
-            cursor: pointer;
-        }
     }
 
     &-variation{
@@ -181,12 +156,6 @@ main {
             @include grid($column: repeat(4, 1fr));
             gap: 15px;
         }
-
-        img {
-            width: 100%;
-            height: 100%;
-        }
-
 
         li[data-active-overlay],  li[data-active-overlay]::before{
             border-radius: $img-border-radius;
@@ -208,26 +177,21 @@ main {
         }
     }
 }
-//active box
-.product-img[data-active-overlay]{
-    position: fixed;
-    top: 0;
-}
 
 //Product detail
 .product-detail {
     @include flex($direction: column, $justify: center);
     gap: 10px;
-    padding: 40px;
+    padding: 95px;
 
     &-maker{
         color: $color-pri-orange;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
     }
 
     &-tittle{
         color: $color-neu-black;
-        font-size: $font-size * 3;
+        font-size: $font-size * 2.65;
         font-weight: $font-weight-2;
     }
 
@@ -308,7 +272,6 @@ main {
 
         input[type="number"]{
             @extend %reset-margin-padding;
-            font-family: $font-kumbh-sans, $font-fallback-roboto;
             font-weight: $font-weight-2;
             color: $color-neu-black;
             text-align: center;
@@ -319,7 +282,6 @@ main {
         }
 
         button {
-            font-family: $font-kumbh-sans, $font-fallback-roboto; 
             font-size: $font-size * 1.5;
             font-weight: $font-weight-2;
             color: $color-pri-orange;
@@ -330,17 +292,11 @@ main {
 
     &-addtocart{
         flex: 3;
-        position: relative;
-        img {
-            position: absolute;
-            top: 35%;
-            left: 25%;
-        }
 
         button {
             @extend %reset-margin-padding;
-            border: none;
             background-color: $color-pri-orange;
+            border: none;
             color: $color-neu-white;
             border-radius: 10px;
             padding: 15px;
@@ -348,5 +304,4 @@ main {
         }
 
     }
-    
 }
