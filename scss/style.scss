@@ -81,7 +81,7 @@ main {
     }
 }
 
-//Product image
+//Product image 
 .product-img {
     @include flex($direction: column);
     gap: 30px;
