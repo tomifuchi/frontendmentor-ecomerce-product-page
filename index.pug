@@ -35,21 +35,18 @@ html(lang='en')
 
     main 
       .product-img
-        .body-overlay
         .product-img-detail
           ul
             li(data-active-image)
-              img(src="./images/image-product-1.jpg", alt="sneaker picture #1")
+              img(id="#item1" src="./images/image-product-1.jpg", alt="sneaker picture #1")
             li
-              img(src="./images/image-product-2.jpg", alt="sneaker picture #2")
+              img(id="#item2" src="./images/image-product-2.jpg", alt="sneaker picture #2")
             li
-              img(src="./images/image-product-3.jpg", alt="sneaker picture #3")
+              img(id="#item3" src="./images/image-product-3.jpg", alt="sneaker picture #3")
             li
-              img(src="./images/image-product-4.jpg", alt="sneaker picture #4")
-            li(data-button-next)
-              img(src="./images/icon-next.svg", alt="icon-next")
-            li(data-button-prev)
-              img(src="./images/icon-previous.svg", alt="icon-prev")
+              img(id="#item4" src="./images/image-product-4.jpg", alt="sneaker picture #4")
+          button(data-button-prev) <
+          button(data-button-next) >
         .product-img-variation
           ul
             li(data-active-overlay)
