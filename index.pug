@@ -6,6 +6,7 @@ html(lang='en')
     //  displays site properly based on user's device 
     link(rel='icon' type='image/png' sizes='32x32' href='./images/favicon-32x32.png')
     link(rel="stylesheet", href="style.css")
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css")
     title Frontend Mentor | E-commerce product page
     //  Feel free to remove these styles or customise in your own stylesheet 👍 
     style
@@ -100,8 +101,7 @@ html(lang='en')
             input(type="number" name="quantity" min="0" value="0" readonly)#cart-input
             button#cart-increment +
           .product-detail-sale-addtocart 
-            //img(src="./images/icon-cart.svg", alt="shopping cart icon")
-            button Add to cart
+            button <i class="fa-solid fa-cart-arrow-down"></i> Add to cart
         h5 * For more than 10 pairs, contact the nearest shop to get further discount.
         
 

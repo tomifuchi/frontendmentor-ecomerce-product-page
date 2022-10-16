@@ -665,5 +665,8 @@ main .product-detail {
   padding: 15px;
   width: 100%;
 }
+.product-detail-sale-addtocart button i {
+  margin-right: 10px;
+}
 
 /*# sourceMappingURL=style.css.map */
