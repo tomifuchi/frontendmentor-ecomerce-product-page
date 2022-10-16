@@ -88,7 +88,7 @@ main {
 
     $img-border-radius: 30px;
     img {
-        height: auto;
+        height: 100%;
         width: 100%;
         //How to check for max-width min-width ?
         max-width: 700px; 
@@ -103,53 +103,63 @@ main {
 
     &-detail{
         
-        //For the body to freeze!
         @at-root {
+            //Apply to the body
+
             .lock-body {
-                height: 100vh;
-                overflow-y: hidden;
+                overflow-y: hidden; 
             }
 
-            .lock-body::after {
-                content: '';
+            .body-dark-overlay {
                 position: fixed;
-                inset: 0;
                 height: 100%;
                 width: 100%;
+                opacity: 0;
+                transform: scale(0);
                 background-color: rgba($color-neu-black, 0.7);
+                z-index: -2;
+                transition: 200ms ease-in-out;
+
+                @include flex($align: center, $justify: center);
+
+                #close-btn {
+                    position: fixed;
+                    top: 5%;
+                    right: 5%;
+                    width: 30px;
+                    height: 30px;
+                    cursor: pointer;
+                }
+
+                #active-box {
+                    width: max(500px, 45vw);
+
+                    .product-img-detail{
+                        img {
+                            cursor: default;
+                        }
+                    }
+
+                    button[data-button-next], button[data-button-prev] {
+                        display: block;
+                    }
+                }
+            }
+
+            .body-dark-overlay[data-active] {
+                transform: scale(1);
+                opacity: 1;
+                z-index: 1;
+
+                #close-btn{
+                    z-index: 2;
+                }
             }
         }
 
         ul {
             @extend %reset-margin-padding;
         }
-
-        /*
-       //Grid image carousel
-        ul {
-            @include grid($column: 1fr, $row: 1fr);
-            //For the navigation next and prev button
-        }
-
-        li {
-            grid-column: 1/2;
-            grid-row: 1/2;
-        }
-
-        li{
-            opacity: 0;
-            z-index: -1;
-            transition: 200ms opacity ease-in-out;
-            transition-delay: 200ms;
-        }
-
-        li[data-active-image] {
-            transition-delay: 0ms;
-            opacity: 1;
-            z-index: 0;
-            cursor: pointer;
-        }
-        */
 
         ul {
             width: 100%;
@@ -228,7 +238,7 @@ main {
 
         li[data-active-overlay] {
             position: relative;
-            border: 2px solid $color-pri-orange;
+            border: 1.5px solid $color-pri-orange;
         }
 
         li[data-active-overlay]::before{

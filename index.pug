@@ -14,6 +14,35 @@ html(lang='en')
       
   body
     .body-dark-overlay
+      img(id="close-btn" src="./images/icon-close.svg", alt="")
+      //This is the same as product-img below, although shares the same class but they
+      //appear in different context. If you are using html template engine, then
+      //Images and their desription are the things you need to put variables to
+      //replace them with.
+      .product-img#active-box 
+        .product-img-detail
+          ul
+            li(data-active-image)
+              img(id="#item1" src="./images/image-product-1.jpg", alt="sneaker picture #1")
+            li
+              img(id="#item2" src="./images/image-product-2.jpg", alt="sneaker picture #2")
+            li
+              img(id="#item3" src="./images/image-product-3.jpg", alt="sneaker picture #3")
+            li
+              img(id="#item4" src="./images/image-product-4.jpg", alt="sneaker picture #4")
+          button(data-button-prev) <
+          button(data-button-next) >
+        .product-img-variation
+          ul
+            li(data-active-overlay)
+              img(src="./images/image-product-1-thumbnail.jpg", alt="sneaker picture #1 thumbnail")
+            li 
+              img(src="./images/image-product-2-thumbnail.jpg", alt="sneaker picture #2 thumbnail")
+            li
+              img(src="./images/image-product-3-thumbnail.jpg", alt="sneaker picture #3 thumbnail")
+            li
+              img(src="./images/image-product-4-thumbnail.jpg", alt="sneaker picture #4 thumbnail")
+ 
     header
       nav 
         .logo 
@@ -34,7 +63,7 @@ html(lang='en')
           img(src="./images/image-avatar.png", alt="user avatar").profile
 
     main 
-      .product-img
+      .product-img#img-detail
         .product-img-detail
           ul
             li(data-active-image)
