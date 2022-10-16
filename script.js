@@ -3,21 +3,38 @@
 const pd_img_detail = document.querySelectorAll('#img-detail .product-img-detail li');
 const pd_img_variation = document.querySelectorAll('#img-detail .product-img-variation li');
 
-//If click or normal state image, go to zoomed state
+//Go to zoomed state
 const body_dark_overlay = document.querySelector('.body-dark-overlay');
 pd_img_detail.forEach( img => {
     img.addEventListener('click', () => {
         document.body.classList.toggle('lock-body');
         body_dark_overlay.dataset.active = true;
+        syncScrollToActiveImage(img);
     });
 });
 
+//The close button on zoomed state
 const active_box_close_btn = document.getElementById('close-btn');
 active_box_close_btn.addEventListener('click', () => {
     document.body.classList.toggle('lock-body');
     delete body_dark_overlay.dataset.active;
 });
 
+//Sync to active box and scroll to active image
+function syncScrollToActiveImage(img) {
+    const pd_img_detail = document.querySelectorAll('#active-box .product-img-detail li');
+    const pd_img_variation = document.querySelectorAll('#active-box .product-img-variation li');
+
+    let currentIndex = [...document.querySelectorAll('#img-detail .product-img-detail li')].indexOf(img);
+    delete document.querySelector('#active-box .product-img-variation li[data-active-overlay]').dataset.activeOverlay;
+    delete document.querySelector('#active-box .product-img-detail li[data-active-image]').dataset.activeImage;
+
+    pd_img_variation[currentIndex].dataset.activeOverlay = true;
+    pd_img_detail[currentIndex].dataset.activeImage = true;
+    pd_img_detail[currentIndex].scrollIntoView(); //Huehuehuehue
+}
+
+//Add event for both zoomed, and normal state
 function add_event(id) {
     const pd_img_detail = document.querySelectorAll(`${id} .product-img-detail li`);
     const pd_img_variation = document.querySelectorAll(`${id} .product-img-variation li`);
@@ -42,7 +59,7 @@ function add_event(id) {
 add_event('#img-detail');
 add_event('#active-box');
 
-//Detail on active box
+//Buttons on active box
 const pd_img_detail_button_next = document.querySelector('#active-box .product-img-detail button[data-button-next]');
 const pd_img_detail_button_prev = document.querySelector('#active-box .product-img-detail button[data-button-prev]');
 
@@ -71,6 +88,7 @@ function scroll_img_carousel(id, step) {
 pd_img_detail_button_next.addEventListener('click', () => {scroll_img_carousel('#active-box', 1);});
 pd_img_detail_button_prev.addEventListener('click', () => {scroll_img_carousel('#active-box', -1);});
 
+//Left and right arrow for both zoomed and normal state, and escape button for zoomed state.
 window.addEventListener('keyup', event => {
     const state = document.querySelector('.body-dark-overlay').hasAttribute('data-active');
     if(state){
