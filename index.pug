@@ -60,7 +60,17 @@ html(lang='en')
           li
             a(href="#") Contacts
         .cart-profile
-          img(src="./images/icon-cart.svg", alt="shopping cart icon").cart
+          i(id="cart-content-btn" class="fa-solid fa-cart-arrow-down fa-lg")
+          .cart-content 
+            .cart-header Cart
+            //.cart-list Your cart is empty. Empty state
+            .cart-list 
+              .items 
+                .item 
+                  img(src="./images/image-product-1.jpg", alt="sneaker picture")
+                  p Fall Limited Edition Sneakers <span id="item-price">125</span>$ x <span id="item-quantity">3</span> <span id="item-total-price">375</span>$
+                  i(style="display: block;" class="fa-solid fa-trash-can")
+              button Checkout
           img(src="./images/image-avatar.png", alt="user avatar").profile
 
     main 

@@ -311,7 +311,7 @@ template {
   box-sizing: border-box;
 }
 
-.product-detail-sale-addtocart button, .product-detail-sale-qtty input[type=number], .product-img-variation ul, .product-img-detail button[data-button-next], .product-img-detail button[data-button-prev], .product-img-detail ul, h3, h4 {
+.product-detail-sale-addtocart button, .product-detail-sale-qtty input[type=number], .product-img-variation ul, .product-img-detail button[data-button-next], .product-img-detail button[data-button-prev], .product-img-detail ul, nav .cart-profile .cart-content .cart-list button, h3, h4 {
   margin: 0;
   padding: 0;
 }
@@ -380,7 +380,7 @@ nav li:hover::before {
   bottom: calc((16px + 0.1vw + 15px) * -1);
   width: 100%;
   height: 0;
-  border-bottom: 1px solid hsl(26deg, 100%, 55%);
+  border-bottom: 3px solid hsl(26deg, 100%, 55%);
 }
 nav .cart-profile {
   margin-left: auto;
@@ -390,14 +390,94 @@ nav .cart-profile {
   justify-content: normal;
   align-items: center;
   gap: 30px;
+  position: relative;
 }
-nav .cart-profile .cart {
-  width: 25px;
-  height: 25px;
+nav .cart-profile i {
+  cursor: pointer;
+}
+nav .cart-profile .cart-content {
+  position: absolute;
+  top: 80px;
+  right: -50px;
+  width: 350px;
+  box-shadow: 0 7px 10px 1px rgba(0, 0, 0, 0.2);
+  background-color: hsl(0deg, 0%, 100%);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: normal;
+  align-items: normal;
+  z-index: -1;
+  opacity: 0;
+  transition: 200ms ease-in-out;
+}
+nav .cart-profile .cart-content .cart-header {
+  border-bottom: 1px solid hsl(220deg, 14%, 75%);
+  font-weight: 700;
+  padding: 15px 30px;
+}
+nav .cart-profile .cart-content .cart-list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: normal;
+  align-items: center;
+  gap: 30px;
+  height: 250px;
+  padding: 20px 15px;
+  color: hsl(219deg, 9%, 45%);
+}
+nav .cart-profile .cart-content .cart-list .items {
+  overflow-y: auto;
+}
+nav .cart-profile .cart-content .cart-list .item {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: normal;
+  align-items: center;
+  gap: 10px;
+  padding: 0 5px;
+  border: 1px solid hsl(223deg, 64%, 98%);
+  border-radius: 10px;
+}
+nav .cart-profile .cart-content .cart-list .item #item-total-price {
+  color: hsl(0deg, 0%, 0%);
+  font-weight: 700;
+}
+nav .cart-profile .cart-content .cart-list .item:hover {
+  opacity: 0.8;
+  border: 1px solid hsl(26deg, 100%, 55%);
+}
+nav .cart-profile .cart-content .cart-list img {
+  border-radius: 10px;
+  width: 50px;
+  height: 50px;
+}
+nav .cart-profile .cart-content .cart-list button {
+  margin-top: auto;
+  background-color: hsl(26deg, 100%, 55%);
+  border: none;
+  color: hsl(0deg, 0%, 100%);
+  border-radius: 10px;
+  padding: 15px;
+  width: 100%;
+}
+nav .cart-profile .cart-content .cart-list button:hover {
+  background-color: #ffa866;
+}
+nav .cart-profile .cart-content.active {
+  top: 60px;
+  z-index: 0;
+  opacity: 1;
 }
 nav .cart-profile .profile {
   width: 50px;
   height: 50px;
+}
+nav .cart-profile .profile:hover {
+  border-radius: 30px;
+  border: 2px solid hsl(26deg, 100%, 55%);
 }
 
 main {
@@ -426,7 +506,6 @@ main .product-detail {
   width: 100%;
   max-width: 700px;
   cursor: pointer;
-  border-radius: 30px;
 }
 .product-img > * {
   width: 87%;
@@ -482,6 +561,9 @@ main .product-detail {
   z-index: 2;
 }
 
+.product-img-detail ul img {
+  border-radius: 20px;
+}
 .product-img-detail ul {
   width: 100%;
   display: flex;
@@ -537,9 +619,13 @@ main .product-detail {
 .product-img-variation ul img {
   width: 100%;
   height: 100%;
+  border-radius: 10px;
 }
-.product-img-variation li[data-active-overlay], .product-img-variation li[data-active-overlay]::before {
-  border-radius: 30px;
+.product-img-variation li, .product-img-variation li[data-active-overlay]::before {
+  border-radius: 10px;
+}
+.product-img-variation li:hover {
+  opacity: 0.7;
 }
 .product-img-variation li[data-active-overlay] {
   position: relative;
@@ -653,6 +739,7 @@ main .product-detail {
   color: hsl(26deg, 100%, 55%);
   border: none;
   background-color: transparent;
+  cursor: pointer;
 }
 .product-detail-sale-addtocart {
   flex: 3;
@@ -667,6 +754,9 @@ main .product-detail {
 }
 .product-detail-sale-addtocart button i {
   margin-right: 10px;
+}
+.product-detail-sale-addtocart button:hover {
+  background-color: #ffa866;
 }
 
 /*# sourceMappingURL=style.css.map */

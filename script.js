@@ -1,3 +1,11 @@
+//Navigation area
+//Shopping cart listing content
+const cart_content_btn = document.getElementById('cart-content-btn');
+const cart_content = document.getElementsByClassName('cart-content')[0];
+cart_content_btn.addEventListener('click', () => {
+    cart_content.classList.toggle('active');
+});
+
 //Product image area
 //Initializing
 const pd_img_detail = document.querySelectorAll('#img-detail .product-img-detail li');

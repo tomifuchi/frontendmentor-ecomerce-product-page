@@ -46,7 +46,7 @@ nav {
         bottom: calc(($font-size + 0.1vw + $nav-padding)*-1);
         width: 100%;
         height: 0;
-        border-bottom: 1px solid $color-pri-orange;
+        border-bottom: 3px solid $color-pri-orange;
     }
 
     //Cart-profile
@@ -55,14 +55,100 @@ nav {
         @include flex($align: center);
         gap: 30px;
 
-        .cart {
-            width: 25px;
-            height: 25px;
+        i {
+            cursor: pointer;
+        }
+
+        position: relative;
+        .cart-content {
+            position: absolute;
+            top: 80px;
+            right: -50px;
+            width: 350px;
+            box-shadow: 0 7px 10px 1px rgba(0, 0 ,0 , .2);
+            background-color: $color-neu-white;
+
+            @include flex($direction: column);
+
+
+            .cart-header {
+                border-bottom: 1px solid $color-neu-grayish-blue;
+                font-weight: $font-weight-2;
+                padding: 15px 30px;
+            }
+
+            .cart-list {
+                @include flex($direction: column, $align: center);
+                gap: 30px;
+                height: 250px;
+                padding: 20px 15px;
+                color: $color-neu-dark-grayish-blue;
+                
+                .items {
+                    overflow-y: auto;
+                }
+
+                //Individual list item
+                .item {
+                    @include flex($align: center);
+                    gap: 10px;
+                    padding: 0 5px;
+                    border: 1px solid $color-neu-light-grayish-blue;
+                    border-radius: 10px;
+
+                    #item-total-price{
+                        color: $color-neu-black;
+                        font-weight: $font-weight-2;
+                    }
+                }
+
+                .item:hover{
+                    opacity: 0.8;
+                    border: 1px solid $color-pri-orange;
+                }
+
+                img{
+                    border-radius: 10px;
+                    width: 50px;
+                    height: 50px;
+                }
+
+                button {
+                    margin-top: auto;
+                    @extend %reset-margin-padding;
+                    background-color: $color-pri-orange;
+                    border: none;
+                    color: $color-neu-white;
+                    border-radius: 10px;
+                    padding: 15px;
+                    width: 100%;
+                }
+
+                button:hover {
+                    background-color: lighten($color-pri-orange, 15%);
+                }
+            
+            }
+
+            z-index: -1;
+            opacity: 0;
+            transition: 200ms ease-in-out;
+        }
+
+        .cart-content.active {
+            top: 60px;
+            z-index: 0;
+            opacity: 1;
         }
 
         .profile {
             width: 50px;
             height: 50px;
+        }
+
+        .profile:hover {
+            border-radius: 30px;
+            border: 2px solid $color-pri-orange;
         }
     }
 }
@@ -86,7 +172,7 @@ main {
     @include flex($direction: column, $align: center);
     gap: 30px;
 
-    $img-border-radius: 30px;
+    $img-border-radius: 20px;
     img {
         height: 100%;
         width: 100%;
@@ -94,7 +180,6 @@ main {
         max-width: 700px; 
 
         cursor: pointer;
-        border-radius: $img-border-radius;
     }
 
     > * {
@@ -159,6 +244,10 @@ main {
 
         ul {
             @extend %reset-margin-padding;
+
+            img {
+                border-radius: $img-border-radius;
+            }
         }
 
         ul {
@@ -229,11 +318,16 @@ main {
             img {
                 width: 100%;
                 height: 100%;
+                border-radius: $img-border-radius / 2;
             }
         }
 
-        li[data-active-overlay],  li[data-active-overlay]::before{
-            border-radius: $img-border-radius;
+        li, li[data-active-overlay]::before{
+            border-radius: $img-border-radius / 2;
+        }
+
+        li:hover {
+            opacity: 0.7;
         }
 
         li[data-active-overlay] {
@@ -362,6 +456,7 @@ main {
             color: $color-pri-orange;
             border: none;
             background-color: transparent;
+            cursor: pointer;
         }
     }
 
@@ -380,6 +475,10 @@ main {
             i {
                 margin-right: 10px;
             }
+        }
+
+        button:hover {
+            background-color: lighten($color-pri-orange, 15%);
         }
     }
 }
