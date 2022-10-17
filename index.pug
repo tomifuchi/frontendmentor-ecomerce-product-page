@@ -60,7 +60,9 @@ html(lang='en')
           li
             a(href="#") Contacts
         .cart-profile
-          i(id="cart-content-btn" class="fa-solid fa-cart-arrow-down fa-lg")
+          #cart-content-btn
+            i(class="fa-solid fa-cart-shopping fa-lg")
+            span#cart-notification 3
           .cart-content 
             .cart-header Cart
             //.cart-list Your cart is empty. Empty state

@@ -55,8 +55,31 @@ nav {
         @include flex($align: center);
         gap: 30px;
 
-        i {
+        #cart-content-btn{
             cursor: pointer;
+            position: relative;
+        }
+
+
+        #cart-notification {
+            position: absolute;
+            top: -50%;
+            right: -40%;
+            width: calc((1rem * 0.75) + 7px);
+            height: calc((1rem * 0.75) + 5px);
+            text-align: center;
+            font-size: 1rem * 0.75;
+            color: $color-neu-white;
+            background-color: $color-pri-orange;
+            border-radius: 8px;
+
+            opacity: 1;
+            transition: 100ms ease-in-out;
+        }
+
+        #cart-notification.active{
+            top: -40%;
+            opacity: 0;
         }
 
         position: relative;
@@ -80,9 +103,9 @@ nav {
             .cart-list {
                 @include flex($direction: column, $align: center);
                 gap: 30px;
-                height: 250px;
                 padding: 20px 15px;
                 color: $color-neu-dark-grayish-blue;
+                max-height: 400px;
                 
                 .items {
                     overflow-y: auto;

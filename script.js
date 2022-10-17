@@ -1,8 +1,10 @@
 //Navigation area
 //Shopping cart listing content
 const cart_content_btn = document.getElementById('cart-content-btn');
+const cart_content_btn_noti = document.getElementById('cart-notification');
 const cart_content = document.getElementsByClassName('cart-content')[0];
 cart_content_btn.addEventListener('click', () => {
+    cart_content_btn_noti.classList.toggle('active');
     cart_content.classList.toggle('active');
 });
 

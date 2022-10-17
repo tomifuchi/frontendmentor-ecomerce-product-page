@@ -392,8 +392,27 @@ nav .cart-profile {
   gap: 30px;
   position: relative;
 }
-nav .cart-profile i {
+nav .cart-profile #cart-content-btn {
   cursor: pointer;
+  position: relative;
+}
+nav .cart-profile #cart-notification {
+  position: absolute;
+  top: -50%;
+  right: -40%;
+  width: calc(0.75rem + 7px);
+  height: calc(0.75rem + 5px);
+  text-align: center;
+  font-size: 0.75rem;
+  color: hsl(0deg, 0%, 100%);
+  background-color: hsl(26deg, 100%, 55%);
+  border-radius: 8px;
+  opacity: 1;
+  transition: 100ms ease-in-out;
+}
+nav .cart-profile #cart-notification.active {
+  top: -40%;
+  opacity: 0;
 }
 nav .cart-profile .cart-content {
   position: absolute;
@@ -423,9 +442,9 @@ nav .cart-profile .cart-content .cart-list {
   justify-content: normal;
   align-items: center;
   gap: 30px;
-  height: 250px;
   padding: 20px 15px;
   color: hsl(219deg, 9%, 45%);
+  max-height: 400px;
 }
 nav .cart-profile .cart-content .cart-list .items {
   overflow-y: auto;
