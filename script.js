@@ -1,5 +1,5 @@
 //Navigation area
-//Shopping cart listing content
+//Shopping cart listing content the big one
 const cart_content_btn = document.getElementById('cart-content-btn');
 const cart_content_btn_noti = document.getElementById('cart-notification');
 const cart_content = document.getElementsByClassName('cart-content')[0];
@@ -7,6 +7,25 @@ cart_content_btn.addEventListener('click', () => {
     cart_content_btn_noti.classList.toggle('active');
     cart_content.classList.toggle('active');
 });
+
+//Inner listing of the shopping cart when the cart is empty or not
+const cart_list = document.getElementsByClassName('cart-list')[0];
+const items = document.getElementsByClassName('items')[0];
+const checkout_btn = document.querySelector('.cart-list button');
+
+function toggle_empty() {
+    if(items.childNodes.length == 0){
+        cart_content_btn_noti.classList.toggle('empty');
+        items.classList.toggle('empty');
+        checkout_btn.classList.toggle('empty');
+        cart_list.classList.toggle('empty');
+    }
+}
+toggle_empty();
+
+
+
+//Add to cart button
 
 //Product image area
 //Initializing
@@ -141,6 +160,83 @@ btn_increment.addEventListener('click', () => {
 
 btn_decrement.addEventListener('click', () => {
     let val = Number(cart_input.value);
-    if (val >= 1)
+    if (val > 1)
     cart_input.value = parseInt(Number(cart_input.value) - 1);
+});
+
+//Add to cart functionality
+const add_to_cart_btn = document.querySelector('.product-detail-sale-addtocart button');
+
+//Since this is an html element to add to, this usually can be done with
+//a backend language. But this will do I guess.
+add_to_cart_btn.addEventListener('click', () => {
+    
+
+    //Dynamically create the item. I'm damn sure,
+    //That this will be easier with some sort of system
+    //than manually create using javascript like this.
+    //Maybe HTML templating system perhaps.
+    const item = document.createElement('div');
+    item.setAttribute('id', 'type1');
+    item.classList.add('item');
+
+    const img = document.createElement('img');
+    img.setAttribute('src',"./images/image-product-1.jpg");
+    img.setAttribute('alt',"sneaker picture");
+    item.appendChild(img);
+
+    const p = document.createElement('p');
+    const item_price = document.createElement('span');
+    item_price.setAttribute('id', 'item-price');
+    item_price.textContent = 125;
+    const item_quantity = document.createElement('span');
+    item_quantity.setAttribute('id', 'item-quantity');
+    item_quantity.textContent = cart_input.value;
+    const item_total_price = document.createElement('span');
+    item_total_price.setAttribute('id', 'item-total-price');
+    item_total_price.textContent = (Number(item_price.textContent)*Number(item_quantity.textContent)).toString();
+ 
+    p.appendChild(document.createTextNode('Fall Limited Edition Sneakers '));
+    p.appendChild(item_price);
+    p.appendChild(document.createTextNode('$'));
+    p.appendChild(document.createTextNode(' x '));
+    p.appendChild(item_quantity);
+    p.appendChild(document.createTextNode(' '));
+    p.appendChild(item_total_price);
+    p.appendChild(document.createTextNode('$'));
+    item.appendChild(p);
+
+    //Remove item, or the trash can icon
+    const i = document.createElement('i');
+    i.setAttribute('id', 'remove-item');
+    i.setAttribute('style','display: block');
+    i.setAttribute('class','fa-solid fa-trash-can');
+    item.appendChild(i);
+    i.addEventListener('click', () =>{
+        i.parentNode.parentNode.removeChild(i.parentNode);
+        cart_content_btn_noti.textContent = items.childNodes.length; 
+        toggle_empty();
+    });
+
+    //Turn on the notification
+    //This should work for multiple type of item in the cart or so I thought
+    toggle_empty();
+
+    let unique = true;
+    items.childNodes.forEach(child => {
+        if(child.getAttribute('id') == item.getAttribute('id')){
+            child.querySelector('#item-quantity').textContent = 
+                (Number(child.querySelector('#item-quantity').textContent) +
+                Number(item.querySelector('#item-quantity').textContent)).toString();
+            child.querySelector('#item-total-price').textContent = 
+                (Number(item.querySelector('#item-price').textContent) *
+                Number(child.querySelector('#item-quantity').textContent)).toString();
+            unique = false;
+        }
+    });
+
+    if(unique) {
+        items.appendChild(item);
+    }
+    cart_content_btn_noti.textContent = items.childNodes.length; 
 });

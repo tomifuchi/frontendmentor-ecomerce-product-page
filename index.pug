@@ -15,11 +15,13 @@ html(lang='en')
       
   body
     .body-dark-overlay
-      img(id="close-btn" src="./images/icon-close.svg", alt="")
-      //This is the same as product-img below, although shares the same class but they
-      //appear in different context. If you are using html template engine, then
-      //Images and their desription are the things you need to put variables to
-      //replace them with.
+      i(id="close-btn" class="fa-sharp fa-solid fa-xmark fa-2xl")
+      // 
+        This is the same as product-img below, although shares the same class but they
+        appear in different context. If you are using html template engine, then
+        Images and their desription are the things you need to put variables to
+        replace them with.
+      
       .product-img#active-box 
         .product-img-detail
           ul
@@ -47,7 +49,7 @@ html(lang='en')
     header
       nav 
         .logo 
-          img(src="./images/logo.svg", alt="sneakers logo")
+          img(src="./images/logo.svg", alt="sneakers logo", width="140" height = "20")
         ul
           li
             a(href="#") Collection
@@ -62,16 +64,13 @@ html(lang='en')
         .cart-profile
           #cart-content-btn
             i(class="fa-solid fa-cart-shopping fa-lg")
-            span#cart-notification 3
+            span#cart-notification
+          //This will be position out so this will not displayed unless CSS disabled
           .cart-content 
             .cart-header Cart
             //.cart-list Your cart is empty. Empty state
             .cart-list 
-              .items 
-                .item 
-                  img(src="./images/image-product-1.jpg", alt="sneaker picture")
-                  p Fall Limited Edition Sneakers <span id="item-price">125</span>$ x <span id="item-quantity">3</span> <span id="item-total-price">375</span>$
-                  i(style="display: block;" class="fa-solid fa-trash-can")
+              .items
               button Checkout
           img(src="./images/image-avatar.png", alt="user avatar").profile
 
@@ -110,11 +109,10 @@ html(lang='en')
         .product-detail-sale
           .product-detail-sale-qtty
             button#cart-decrement -
-            input(type="number" name="quantity" min="0" value="0" readonly)#cart-input
+            input(type="number" name="quantity" min="1" value="1" readonly)#cart-input
             button#cart-increment +
           .product-detail-sale-addtocart 
             button <i class="fa-solid fa-cart-arrow-down"></i> Add to cart
         h5 * For more than 10 pairs, contact the nearest shop to get further discount.
-        
 
   script(src="script.js" defer) 

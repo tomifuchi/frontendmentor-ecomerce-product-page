@@ -34,15 +34,6 @@ $font-weight-3: 900;
 //@include google-font("Kumbh+Sans:400");
 $font-kumbh-sans: "Kumbh Sans";
 
-//Import the font in bold
-@font-face{
-    font-family: "Kumbh Sans";
-    src: url('../font/kumbh-sans-bold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
-}
-
-
 //General reset
 h3, h4 {
     @extend %reset-margin-padding;
