@@ -88,9 +88,12 @@ function add_event(id) {
 add_event('#img-detail');
 add_event('#active-box');
 
-//Buttons on active box
-const pd_img_detail_button_next = document.querySelector('#active-box .product-img-detail button[data-button-next]');
-const pd_img_detail_button_prev = document.querySelector('#active-box .product-img-detail button[data-button-prev]');
+//Buttons on active box, and main box
+const pd_img_detail_button_next_active_box = document.querySelector('#active-box .product-img-detail button[data-button-next]');
+const pd_img_detail_button_prev_active_box = document.querySelector('#active-box .product-img-detail button[data-button-prev]');
+
+const pd_img_detail_button_next = document.querySelector('#img-detail .product-img-detail button[data-button-next]');
+const pd_img_detail_button_prev = document.querySelector('#img-detail .product-img-detail button[data-button-prev]');
 
 function scroll_img_carousel(id, step) {
    const active_img = document.querySelector(`${id} .product-img-detail li[data-active-image]`);
@@ -114,8 +117,11 @@ function scroll_img_carousel(id, step) {
    pd_img_detail[nextIndex].dataset.activeImage = true;
    pd_img_detail[nextIndex].scrollIntoView();
 }
-pd_img_detail_button_next.addEventListener('click', () => {scroll_img_carousel('#active-box', 1);});
-pd_img_detail_button_prev.addEventListener('click', () => {scroll_img_carousel('#active-box', -1);});
+pd_img_detail_button_next_active_box.addEventListener('click', () => {scroll_img_carousel('#active-box', 1);});
+pd_img_detail_button_prev_active_box.addEventListener('click', () => {scroll_img_carousel('#active-box', -1);});
+
+pd_img_detail_button_next.addEventListener('click', () => {scroll_img_carousel('#img-detail', 1);});
+pd_img_detail_button_prev.addEventListener('click', () => {scroll_img_carousel('#img-detail', -1);});
 
 //Left and right arrow for both zoomed and normal state, and escape button for zoomed state.
 window.addEventListener('keyup', event => {
@@ -239,4 +245,21 @@ add_to_cart_btn.addEventListener('click', () => {
         items.appendChild(item);
     }
     cart_content_btn_noti.textContent = items.childNodes.length; 
+});
+
+
+//Mobile layout section
+//-------------------------
+const mobile_menu = document.querySelector('nav ul');
+const mb_btn = document.getElementById('mb-btn');
+const mb_close_btn = document.getElementById('mb-close-btn');
+
+mb_btn.addEventListener('click', () => {
+    document.body.classList.toggle('lock-body');
+    mobile_menu.classList.toggle('active');
+})
+
+mb_close_btn.addEventListener('click', () => {
+    document.body.classList.toggle('lock-body');
+    mobile_menu.classList.toggle('active');     
 });

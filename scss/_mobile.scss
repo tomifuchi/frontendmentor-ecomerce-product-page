@@ -1,0 +1,193 @@
+//Getting smaller but still there're space
+@media (max-width: 875px) {
+    body {
+        > * {
+            width: 95%;
+        }
+    }
+
+    nav {
+        .cart-profile {
+            .cart-content{
+                right: 0;
+            }
+        }
+    }
+}
+
+//Switching to mobile layout
+@media (max-width: 770px) {
+    body {
+        > * {
+            width: 100%;
+        }
+    }
+
+    //Header area
+    $padding-left-right: 20px;
+    nav {
+        padding-left: $padding-left-right;
+        padding-right: $padding-left-right;
+        border-bottom: none;
+        box-shadow: 0 1px 5px 0px rgba(0, 0, 0, 0.1);
+
+        #mb-btn, #mb-close-btn {
+            display: block;
+        }
+
+        #mb-close-btn {
+            margin-bottom: 50px;
+       }
+
+        //The ul
+        ul {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            height: 100%;
+            width: 250px;
+
+            transition: 200ms;
+            &.active {
+                left: 0;
+            }
+
+            @include flex($direction: column, $align: flex-start); 
+            gap: 30px;
+            background-color: $color-neu-white;
+            box-shadow: 1px 0 5px 1px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            
+            padding-top: 30px;
+            padding-left: 20px;
+            li {
+                padding: 0;
+                margin: 0;
+                text-align: start;
+
+            }
+
+            a {
+                color: $color-neu-black;
+                font-weight: $font-weight-2;
+            }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+            //Reset for the bottom hover effect
+            //here
+            li:hover {
+                position: static;
+            }
+            li:hover::before{
+                position: static;
+                width: 0;
+                height: 0;
+                border-bottom: none;
+            } //To here
+        }
+
+
+        //Cart profile area
+        .cart-profile .cart-content {
+            z-index: -1;
+            right: -450px;
+            opacity: 0;
+            transition: 300ms ease-in-out;
+        }
+
+        .cart-profile .cart-content.active {
+            top: 80px;
+            right: 0;
+            z-index: 1;
+        }
+    }
+
+    //Main area
+    main {
+        @include flex($direction: column, $align: center);
+        gap: 30px;
+
+        .product-img {
+            width: 30vh;
+            min-width: 375px;
+        }
+    }
+
+    .product-img {
+        > * {
+           width: 100%;
+         }
+    }
+
+    .product-detail {
+        gap: 20px;
+        width: 80%;
+
+    }
+}
+
+@media (max-width: 375px) {
+    nav {
+        .cart-profile .cart-content.active{
+            right: -5px;
+        }
+
+        .cart-profile .profile {
+            width: 40px;
+            height: 40px;
+        }
+    }
+
+    main {
+        padding: 0;
+        .product-img{
+
+            .product-img-detail {
+                img{
+                    border-radius: 0;
+                }
+
+                button[data-button-next], button[data-button-prev] {
+                    display: block;
+                    top: 40%;
+                }
+
+                button[data-button-next] {
+                    right: 1%;
+                }
+
+                button[data-button-prev] {
+                    left: 1%;
+                }
+            }
+
+            .product-img-variation {
+                display: none;
+            }
+        }
+
+        .product-detail {
+            width: 95%;
+
+            &-price {
+                @include flex();
+                width: 100%;
+
+                .discount {
+                    padding: 5px 10px; 
+                }
+
+                .previous-price {
+                    margin-left: auto;
+                }
+            }
+
+            &-sale {
+                @include flex($direction: column);
+            }
+        }
+    }
+}

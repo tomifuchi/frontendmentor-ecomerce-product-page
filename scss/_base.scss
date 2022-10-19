@@ -35,6 +35,6 @@ $font-weight-3: 900;
 $font-kumbh-sans: "Kumbh Sans";
 
 //General reset
-h3, h4 {
+h3, h4, ul{
     @extend %reset-margin-padding;
 }
