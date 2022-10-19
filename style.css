@@ -5,6 +5,7 @@
  * 1. Correct the line height in all browsers.
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
+@import url("https://fonts.googleapis.com/css?family=Kumbh+Sans:400,700,900");
 html {
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
@@ -396,7 +397,6 @@ nav .cart-profile #cart-content-btn {
   transform: scale(1);
 }
 nav .cart-profile #cart-content-btn:active {
-  transition: 100ms;
   transform: scale(1.1);
 }
 nav .cart-profile #cart-notification {
@@ -497,9 +497,15 @@ nav .cart-profile .cart-content .cart-list button {
   border-radius: 10px;
   padding: 15px;
   width: 100%;
+  transition: 100ms ease-in-out;
+  transform: scale(1);
 }
 nav .cart-profile .cart-content .cart-list button:hover {
   background-color: #ffa866;
+}
+nav .cart-profile .cart-content .cart-list button:active {
+  color: hsl(0deg, 0%, 0%);
+  transform: scale(1.1);
 }
 nav .cart-profile .cart-content .cart-list button.empty {
   display: none;
@@ -829,6 +835,9 @@ main .product-detail {
   }
 }
 @media (max-width: 770px) {
+  body {
+    overflow-x: hidden;
+  }
   body > * {
     width: 100%;
   }

@@ -6,7 +6,7 @@ body {
     font-family: $font-kumbh-sans, $font-fallback; 
     //Responsive typography
     font-size: calc($font-size + 0.1vw);
-    //Basically, if the content is less enough, then it will try and span to 100vh, if more, it will not hold back to grow
+    //Basically, if the content is not enough, then it will try and span to 100vh, if more, it will not hold back to grow
     min-height: 100vh; 
 
     > * {
@@ -69,7 +69,6 @@ nav {
         }
 
         #cart-content-btn:active{
-            transition: 100ms;
             transform: scale(1.1);
         }
 
@@ -172,10 +171,18 @@ nav {
                     border-radius: 10px;
                     padding: 15px;
                     width: 100%;
+
+                    transition: 100ms ease-in-out;
+                    transform: scale(1);
                 }
 
                 button:hover {
                     background-color: lighten($color-pri-orange, 15%);
+                }
+
+                button:active {
+                    color: $color-neu-black;
+                    transform: scale(1.1);
                 }
 
                 button.empty {

@@ -231,12 +231,14 @@ add_to_cart_btn.addEventListener('click', () => {
     let unique = true;
     items.childNodes.forEach(child => {
         if(child.getAttribute('id') == item.getAttribute('id')){
-            child.querySelector('#item-quantity').textContent = 
-                (Number(child.querySelector('#item-quantity').textContent) +
-                Number(item.querySelector('#item-quantity').textContent)).toString();
-            child.querySelector('#item-total-price').textContent = 
-                (Number(item.querySelector('#item-price').textContent) *
-                Number(child.querySelector('#item-quantity').textContent)).toString();
+            if(Number(child.querySelector('#item-quantity').textContent) < 10){
+                child.querySelector('#item-quantity').textContent = 
+                    (Number(child.querySelector('#item-quantity').textContent) +
+                    Number(item.querySelector('#item-quantity').textContent)).toString();
+                child.querySelector('#item-total-price').textContent = 
+                    (Number(item.querySelector('#item-price').textContent) *
+                    Number(child.querySelector('#item-quantity').textContent)).toString();
+            }
             unique = false;
         }
     });

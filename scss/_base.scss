@@ -31,7 +31,7 @@ $font-weight-2: 700;
 $font-weight-3: 900;
 
 //## Font
-//@include google-font("Kumbh+Sans:400");
+@include google-font("Kumbh+Sans:400,700,900");
 $font-kumbh-sans: "Kumbh Sans";
 
 //General reset

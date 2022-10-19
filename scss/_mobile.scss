@@ -18,6 +18,7 @@
 //Switching to mobile layout
 @media (max-width: 770px) {
     body {
+        overflow-x: hidden;
         > * {
             width: 100%;
         }
@@ -130,6 +131,7 @@
 }
 
 @media (max-width: 375px) {
+
     nav {
         .cart-profile .cart-content.active{
             right: -5px;
