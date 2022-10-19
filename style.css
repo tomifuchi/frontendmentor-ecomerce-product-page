@@ -414,7 +414,7 @@ nav .cart-profile #cart-notification.empty {
 nav .cart-profile .cart-content {
   position: absolute;
   top: 80px;
-  right: clamp(-50px + 5vw, -50px + 7vw, -50px);
+  right: -50px;
   width: 350px;
   box-shadow: 0 7px 10px 1px rgba(0, 0, 0, 0.2);
   background-color: hsl(0deg, 0%, 100%);
@@ -685,7 +685,7 @@ main .product-detail {
   justify-content: center;
   align-items: normal;
   gap: 10px;
-  padding: min(5vw, 95px);
+  padding: clamp(10px + 1vw, 2vw, 50px);
 }
 .product-detail-maker {
   color: hsl(26deg, 100%, 55%);
@@ -693,7 +693,9 @@ main .product-detail {
 }
 .product-detail-tittle {
   color: hsl(0deg, 0%, 0%);
-  font-size: 42.4px;
+  max-width: 65%;
+  min-width: 300px;
+  font-size: clamp(2.1rem, 16px + 2vw, 2.5rem);
   font-weight: 700;
 }
 .product-detail-description {

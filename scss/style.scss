@@ -16,6 +16,8 @@ body {
         width: max(85%, 700px);
     }
 }
+//Potential break point 875px
+//Based on the nav, profile and cart closing in on the links. 875px is a good break poing I think
 
 //Header area
 nav {
@@ -25,11 +27,6 @@ nav {
     $nav-padding: 15px;
     padding: $nav-padding 0;
     border-bottom: 1px solid $color-neu-grayish-blue;
-
-    //Will get back to this
-    .logo {
-
-    }
 
     ul {
         @include flex();
@@ -95,7 +92,7 @@ nav {
         .cart-content {
             position: absolute;
             top: 80px;
-            right: clamp(calc(-50px + 5vw), calc(-50px + 7vw), -50px);
+            right: -50px;
             width: 350px;
             box-shadow: 0 7px 10px 1px rgba(0, 0 ,0 , .2);
             background-color: $color-neu-white;
@@ -412,7 +409,9 @@ main {
 .product-detail {
     @include flex($direction: column, $justify: center);
     gap: 10px;
-    padding: min(5vw, 95px);
+    //Man this is trippy as hell repsonsive padding is a bitch
+    padding: clamp(10px + 1vw, 2vw ,50px);
+    
 
     &-maker{
         color: $color-pri-orange;
@@ -421,7 +420,12 @@ main {
 
     &-tittle{
         color: $color-neu-black;
-        font-size: $font-size * 2.65;
+        //These probably work I think
+        max-width: 65%;
+        min-width: 300px;
+        //First time doing this shit, Now, to do this right, scale the font first then
+        //the padding latter, or work inside out of the box model.
+        font-size: clamp(2.1rem, calc($font-size + 2vw), 2.5rem);
         font-weight: $font-weight-2;
     }
 
