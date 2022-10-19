@@ -840,6 +840,11 @@ main .product-detail {
   }
   nav #mb-btn, nav #mb-close-btn {
     display: block;
+    transform: scale(1);
+    transition: 100ms ease-in-out;
+  }
+  nav #mb-btn:active, nav #mb-close-btn:active {
+    transform: scale(1.1);
   }
   nav #mb-close-btn {
     margin-bottom: 50px;
@@ -910,9 +915,6 @@ main .product-detail {
     width: 30vh;
     min-width: 375px;
   }
-  .product-img > * {
-    width: 100%;
-  }
   .product-detail {
     gap: 20px;
     width: 80%;
@@ -929,7 +931,14 @@ main .product-detail {
   main {
     padding: 0;
   }
+  main .product-img .product-img-detail {
+    width: 100%;
+  }
+  main .product-img .product-img-detail li {
+    pointer-events: none;
+  }
   main .product-img .product-img-detail img {
+    cursor: default;
     border-radius: 0;
   }
   main .product-img .product-img-detail button[data-button-next], main .product-img .product-img-detail button[data-button-prev] {

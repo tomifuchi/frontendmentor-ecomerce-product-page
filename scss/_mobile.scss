@@ -33,7 +33,13 @@
 
         #mb-btn, #mb-close-btn {
             display: block;
+            transform: scale(1);
+            transition: 100ms ease-in-out;
         }
+        #mb-btn:active, #mb-close-btn:active {
+            transform: scale(1.1);
+        }
+
 
         #mb-close-btn {
             margin-bottom: 50px;
@@ -116,12 +122,6 @@
         }
     }
 
-    .product-img {
-        > * {
-           width: 100%;
-         }
-    }
-
     .product-detail {
         gap: 20px;
         width: 80%;
@@ -146,7 +146,14 @@
         .product-img{
 
             .product-img-detail {
+                width: 100%;
+
+                li {
+                    pointer-events: none;
+                }
+
                 img{
+                    cursor: default;
                     border-radius: 0;
                 }
 
