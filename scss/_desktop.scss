@@ -296,7 +296,7 @@ main {
                 }
 
                 #active-box {
-                    @include flex($direction: column, $align: center, $wrap: wrap);
+                    @include flex($direction: column, $align: center);
                     width: clamp(300px, 70%, 600px);
 
                     .product-img-detail{

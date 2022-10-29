@@ -624,7 +624,7 @@ main .product-detail {
 .body-dark-overlay #active-box {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: normal;
   align-items: center;
   width: clamp(300px, 70%, 600px);
@@ -988,6 +988,11 @@ main .product-detail {
     width: 30vh;
     min-width: 375px;
   }
+  main .product-img .product-img-detail button[data-button-next], main .product-img .product-img-detail button[data-button-prev] {
+    font-size: 16px;
+    height: 41px;
+    width: 41px;
+  }
 }
 @media (max-width: 770px) {
   .product-detail {
@@ -995,7 +1000,7 @@ main .product-detail {
     width: 80%;
   }
 }
-@media (max-width: 850px) and (max-height: 450px) {
+@media (max-height: 450px) {
   .body-dark-overlay #active-box {
     display: flex;
     flex-direction: row;
@@ -1004,6 +1009,9 @@ main .product-detail {
     align-items: normal;
   }
   .body-dark-overlay #active-box .product-img-detail button[data-button-next], .body-dark-overlay #active-box .product-img-detail button[data-button-prev] {
+    font-size: 16px;
+    height: 41px;
+    width: 41px;
     top: 40%;
   }
   .body-dark-overlay #active-box .product-img-variation ul {

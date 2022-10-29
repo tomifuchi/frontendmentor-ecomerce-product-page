@@ -156,23 +156,33 @@
         .product-img {
             width: 30vh;
             min-width: 375px;
+
+            .product-img-detail {
+                button[data-button-next], button[data-button-prev] {
+                    font-size: $font-size * 1;
+                    height: 41px;
+                    width: 41px;
+                }
+            }
         }
     }
 
     .product-detail {
         gap: 20px;
         width: 80%;
-
     }
 }
 
-@media (max-width: 850px) and (max-height: 450px) {
+@media (max-height: 450px) {
     .body-dark-overlay {
         #active-box {
             @include flex();
 
             .product-img-detail {
                 button[data-button-next], button[data-button-prev] {
+                    font-size: $font-size * 1;
+                    height: 41px;
+                    width: 41px;
                     top:40%;
                 }
             }
