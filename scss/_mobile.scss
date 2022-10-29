@@ -17,10 +17,28 @@
 
 //Switching to mobile layout
 @media (max-width: 770px) {
+
     body {
-        overflow-x: hidden;
         > * {
             width: 100%;
+        }
+    }
+
+    @media (max-width: 580px) {
+        main {
+            .product-img-detail {
+                li {
+                    pointer-events: none;
+                    z-index: -1;
+                }
+            }
+        }
+    }
+
+    //The dark overlay area
+    .body-dark-overlay {
+        #active-box {
+            width: 65%;
         }
     }
 
@@ -56,6 +74,7 @@
 
             transition: 200ms;
             &.active {
+                z-index: 2;
                 left: 0;
             }
 
@@ -98,18 +117,35 @@
 
 
         //Cart profile area
-        .cart-profile .cart-content {
-            z-index: -1;
-            right: -450px;
-            opacity: 0;
-            transition: 300ms ease-in-out;
-        }
+        @media (max-width: 580px) {
+            nav {
+                position: relative;
+            }
+            .cart-profile {
+                position: static;
+            }
+            .cart-profile .cart-content {
+                top: 100px;
+                width: 70%;
+                left: 15vw;
+                right: 15vw;
+                @media (max-width: 480px) {
+                   width: 85%;
+                   left: 7.5vw;
+                   right: 7.5vw;
+                }
+                opacity: 0; 
+                transition: 200ms ease-in-out;
+            }
 
-        .cart-profile .cart-content.active {
-            top: 80px;
-            right: 0;
-            z-index: 1;
-        }
+       }
+
+       .cart-profile .cart-content.active {
+           top: 90px;
+           opacity: 1;
+           z-index: 1;
+       }
+ 
     }
 
     //Main area
@@ -165,11 +201,11 @@
                 }
 
                 button[data-button-next] {
-                    right: 1%;
+                    right: 4vw;
                 }
 
                 button[data-button-prev] {
-                    left: 1%;
+                    left: 4vw;
                 }
             }
 
