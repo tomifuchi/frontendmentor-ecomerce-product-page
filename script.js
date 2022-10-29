@@ -258,10 +258,12 @@ const mb_close_btn = document.getElementById('mb-close-btn');
 
 mb_btn.addEventListener('click', () => {
     document.body.classList.toggle('lock-body');
+    document.body.classList.toggle('mb-dark-overlay');
     mobile_menu.classList.toggle('active');
 })
 
 mb_close_btn.addEventListener('click', () => {
     document.body.classList.toggle('lock-body');
+    document.body.classList.toggle('mb-dark-overlay');
     mobile_menu.classList.toggle('active');     
 });

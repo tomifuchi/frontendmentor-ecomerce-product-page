@@ -166,6 +166,24 @@
     }
 }
 
+@media (max-width: 850px) and (max-height: 450px) {
+    .body-dark-overlay {
+        #active-box {
+            @include flex();
+
+            .product-img-detail {
+                button[data-button-next], button[data-button-prev] {
+                    top:40%;
+                }
+            }
+
+            .product-img-variation ul{
+                @include grid($column: 1fr 1fr, $row: 1fr 1fr);
+            }
+        }
+    }
+}
+
 @media (max-width: 375px) {
 
     nav {
@@ -182,6 +200,8 @@
     main {
         padding: 0;
         .product-img{
+            width: 100%;
+            min-width: 350px;
 
             .product-img-detail {
                 width: 100%;
@@ -201,11 +221,11 @@
                 }
 
                 button[data-button-next] {
-                    right: 4vw;
+                    right: 1vw;
                 }
 
                 button[data-button-prev] {
-                    left: 4vw;
+                    left: 1vw;
                 }
             }
 
