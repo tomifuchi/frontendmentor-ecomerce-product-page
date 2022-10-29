@@ -24,6 +24,8 @@
         }
     }
 
+    //Disable zoomed at 580px, Because it doesn't matter no more
+    //Since the minimum of these images is 300px
     @media (max-width: 580px) {
         main {
             .product-img-detail {
@@ -35,10 +37,9 @@
         }
     }
 
-    //The dark overlay area
     .body-dark-overlay {
         #active-box {
-            width: 65%;
+            width: 70%;
         }
     }
 
@@ -55,6 +56,7 @@
             transform: scale(1);
             transition: 100ms ease-in-out;
         }
+
         #mb-btn:active, #mb-close-btn:active {
             transform: scale(1.1);
         }
@@ -85,10 +87,15 @@
             z-index: 1;
             
             padding-top: 30px;
-            padding-left: 20px;
+            /*
+                Same nav padding left of the menu so that
+                the close button to lie on top of the hamburger button
+                So here we use the same variable for the nav padding
+            */
+            padding-left: $padding-left-right;
             li {
-                padding: 0;
                 margin: 0;
+                padding: 0;
                 text-align: start;
 
             }
@@ -126,9 +133,10 @@
             }
             .cart-profile .cart-content {
                 top: 100px;
+                //Read here, this is a trick to center using position and percentage
                 width: 70%;
-                left: 15vw;
-                right: 15vw;
+                left: 15%;
+                right: 15%;
                 @media (max-width: 480px) {
                    width: 85%;
                    left: 7.5vw;
@@ -155,6 +163,7 @@
 
         .product-img {
             width: 30vh;
+            //Quite paranoid, though not necessarily needed here.
             min-width: 375px;
 
             .product-img-detail {
@@ -173,6 +182,9 @@
     }
 }
 
+//This specifically for smartphone in landscape mode, looks ugly huh ?
+//Proper solution here is needed probably.
+//Notice!!  Height, not the width here!
 @media (max-height: 450px) {
     .body-dark-overlay {
         #active-box {
@@ -194,13 +206,10 @@
     }
 }
 
+
 @media (max-width: 375px) {
 
     nav {
-        .cart-profile .cart-content.active{
-            right: -5px;
-        }
-
         .cart-profile .profile {
             width: 40px;
             height: 40px;
@@ -247,13 +256,14 @@
         .product-detail {
             width: 95%;
 
+            &-description {
+                word-spacing: 0.05rem;
+                line-height: 1.4rem;
+            }
+
             &-price {
                 @include flex();
                 width: 100%;
-
-                .discount {
-                    padding: 5px 10px; 
-                }
 
                 .previous-price {
                     margin-left: auto;
@@ -262,6 +272,12 @@
 
             &-sale {
                 @include flex($direction: column);
+
+                &-qtty {
+                    input[type="number"]{
+                        max-width: none;
+                    }
+                }
             }
         }
     }

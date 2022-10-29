@@ -11,7 +11,7 @@ body {
 
     > * {
         margin: 0 auto;
-        width: max(85%, 700px);
+        width: 85%;
     }
 }
 //Potential break point 875px
@@ -31,6 +31,7 @@ nav {
         display: none;
     }
 
+    //The links
     ul {
         @include flex();
         gap: 25px;
@@ -45,6 +46,7 @@ nav {
         position: relative;
     }
 
+    //Links border when hover
     li:hover::before{
         content: '';
         position: absolute;
@@ -55,7 +57,7 @@ nav {
         border-bottom: 3px solid $color-pri-orange;
     }
 
-    //Cart-profile
+    //cart and profile container
     .cart-profile {
         margin-left: auto;
         @include flex($align: center);
@@ -97,6 +99,7 @@ nav {
             opacity: 0;
         }
 
+        //For cart-content to have a place to anchor to.
         position: relative;
         .cart-content {
             position: absolute;
@@ -162,6 +165,7 @@ nav {
                     height: 50px;
                 }
 
+                //The checkout button
                 button {
                     margin-top: auto;
                     @extend %reset-margin-padding;
@@ -195,6 +199,7 @@ nav {
             transition: 200ms ease-in-out;
         }
 
+        //The only instance that fixed height is correct
         .cart-list.empty {
             height: 125px;
         }
@@ -246,6 +251,7 @@ main {
 
     > * {
         width: 87%;
+        //Ensuring the images not exceeding 700px, But...Is this line necessary ?
         max-width: 700px; 
     }
 
@@ -253,8 +259,9 @@ main {
         
         @at-root {
             //Apply to the body
-
             .lock-body {
+                //Test this line here
+                height: 100vh;
                 overflow-y: hidden; 
             }
 
@@ -281,23 +288,12 @@ main {
 
                 @include flex($align: center, $justify: center);
 
-                #close-btn {
-                    position: fixed;
-                    top: 5%;
-                    right: 5%;
-                    width: 30px;
-                    height: 30px;
-                    cursor: pointer;
-                    color: $color-neu-white;
-                }
-
-                #close-btn:hover {
-                    color: $color-pri-orange;
-                }
-
                 #active-box {
                     @include flex($direction: column, $align: center);
                     width: clamp(300px, 70%, 600px);
+
+                    //For the close button to anchor to.
+                    position: absolute;
 
                     .product-img-detail{
                         img {
@@ -313,6 +309,22 @@ main {
                         color: $color-pri-orange;
                     }
                 }
+
+                #close-btn {
+                    position: absolute;
+                    top: 0;
+                    right: -7%;
+                    width: 30px;
+                    height: 30px;
+                    cursor: pointer;
+                    color: $color-neu-white;
+                }
+
+                #close-btn:hover {
+                    color: $color-pri-orange;
+                }
+
+
             }
 
             .body-dark-overlay[data-active] {
@@ -340,6 +352,9 @@ main {
             @include flex();
             gap: 20px;
             overflow-x: auto;
+            //Slight movement is possible for the y
+            //So we shut the damn thing up.
+            overflow-y: hidden;
             //This is to curve the overscrolling to
             //go out the container inside. Read it here
             //https://css-tricks.com/almanac/properties/o/overscroll-behavior/
@@ -374,6 +389,7 @@ main {
         position: relative;
         button[data-button-next], button[data-button-prev] {
             @extend %reset-margin-padding;
+            //Since this is only for the active box.
             display: none;
             position: absolute;
             top: 50%;
@@ -441,7 +457,7 @@ main {
     }
 }
 
-//Product detail
+//product detail
 .product-detail {
     @include flex($direction: column, $justify: center);
     gap: 10px;
@@ -466,11 +482,12 @@ main {
     }
 
     &-description{
+        line-height: calc(1em + 0.5vw);
         color: $color-neu-dark-grayish-blue;
     }
 
     &-price{
-        width: 40%;
+        width: 35%;
         @include grid($column: repeat(2,1fr),$row: repeat(2,1fr));
         @include defineGridArea((
             ".current-price": cp,
@@ -495,10 +512,12 @@ main {
             border-radius: 5px;
             background-color: $color-pri-pale-orange;
             color: $color-pri-orange;
+            padding: 5px 10px;
         }
 
         .previous-price {
             color: $color-neu-grayish-blue;
+            text-decoration: line-through;
         }
 
     }
@@ -506,15 +525,18 @@ main {
     //Notice for more than 10 pairs
     h5 {
         color: $color-neu-dark-grayish-blue;
-        font-weight: 1;
+        font-weight: $font-weight-1;
     }
 }
 
-//
+//The add to cart and quantity buttons
 .product-detail-sale{
     @include flex();
     gap: 10px;
 
+    //The quantity element
+    //Here's the tutorial for it:
+    //https://www.youtube.com/watch?v=n1O83fJYYLo
     &-qtty {
         flex: 1;
 
@@ -552,14 +574,36 @@ main {
         }
 
         button {
+            width: 35px;
+            height: 35px;
+            border-radius: 30px;
             font-size: $font-size * 1.5;
             font-weight: $font-weight-2;
             color: $color-pri-orange;
             border: none;
             background-color: transparent;
             cursor: pointer;
+            transform: scale(1);
+            transition: 200ms;
         }
-    }
+
+        button:hover {
+            background-color: darken($color-pri-pale-orange, 2%);
+        }
+
+        button:focus {
+            border: 1px dashed $color-neu-dark-grayish-blue;
+            background-color: darken($color-neu-light-grayish-blue, 3%);
+        }
+
+        button:active {
+            background-color: $color-pri-orange; 
+            color: $color-neu-black;
+            transform: scale(1.05);
+            transition: 200ms;
+        }
+
+   }
 
     &-addtocart{
         flex: 3;
@@ -582,6 +626,10 @@ main {
 
         button:hover {
             background-color: lighten($color-pri-orange, 15%);
+        }
+
+        button:focus {
+            border: 1px dashed $color-neu-light-grayish-blue;
         }
 
         button:active{

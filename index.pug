@@ -15,14 +15,13 @@ html(lang='en')
       
   body
     .body-dark-overlay
-      i(id="close-btn" class="fa-sharp fa-solid fa-xmark fa-2xl")
       // 
         This is the same as product-img below, although shares the same class but they
         appear in different context. If you are using html template engine, then
-        Images and their desription are the things you need to put variables to
-        replace them with.
+        Images and their desription are things you need to replace with variables.
       
       .product-img#active-box 
+        i(id="close-btn" class="fa-sharp fa-solid fa-xmark fa-2xl")
         .product-img-detail
           ul
             li(data-active-image)
@@ -67,17 +66,17 @@ html(lang='en')
           #cart-content-btn
             i(class="fa-solid fa-cart-shopping fa-lg")
             span#cart-notification
-          //This will be position out so this will not displayed unless CSS disabled
+          //Toggle to display cart-content
           .cart-content 
             .cart-header Cart
-            //.cart-list Your cart is empty. Empty state
+            //.cart-list Your cart is empty. Empty state, it should be like this, then add or remove using javascript.
             .cart-list 
               .items
               button Checkout
           img(src="./images/image-avatar.png", alt="user avatar").profile
 
     main 
-      .product-img#img-detail
+      section.product-img#img-detail
         .product-img-detail
           ul
             li(data-active-image)
@@ -100,14 +99,14 @@ html(lang='en')
               img(src="./images/image-product-3-thumbnail.jpg", height="110", width="110", alt="sneaker picture #3 thumbnail")
             li
               img(src="./images/image-product-4-thumbnail.jpg", height="110", width="110", alt="sneaker picture #4 thumbnail")
-      .product-detail
+      section.product-detail
         h3.product-detail-maker SNEAKER COMPANY
         h4.product-detail-tittle Fall Limited Edition Sneakers
         p.product-detail-description These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they’ll withstand everything the weather can offer.
         .product-detail-price 
           .current-price $125.00 
           .discount 50% 
-          .previous-price <del>$250.00</del>
+          .previous-price $250.00
         .product-detail-sale
           .product-detail-sale-qtty
             button#cart-decrement -
@@ -117,4 +116,4 @@ html(lang='en')
             button <i class="fa-solid fa-cart-arrow-down"></i> Add to cart
         h5 * For more than 10 pairs, contact the nearest shop to get further discount.
 
-  script(src="script.js" defer) 
+  script(src="script.js") 
